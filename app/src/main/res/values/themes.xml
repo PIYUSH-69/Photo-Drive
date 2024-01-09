@@ -8,12 +8,20 @@
 
     <style name="Theme.MATERIAL" parent="Base.Theme.MATERIAL" />
 
-    <style name="Theme.MATERIAL.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
+    <style name="actiony" parent="Theme.Material3.DayNight">
+
+        <item name="colorPrimary">#00BCD4</item>
+        <item name="titleTextColor">@color/neon</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="actionOverflowButtonStyle">@style/actiony2</item>
+
+
+        -->
+    </style>
+ <style name="actiony2" parent="Theme.Material3.DayNight">
+     <item name="tint">@color/neon</item>
     </style>
 
-    <style name="Theme.MATERIAL.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.MATERIAL.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

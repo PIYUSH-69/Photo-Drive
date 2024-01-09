@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.material.R
@@ -53,7 +54,7 @@ class three : Fragment() {
                 for (snapshot in snapshot.children) {
                     val key=snapshot.key.toString()
                     val value = snapshot.value.toString()
-                    Log.w(TAG, "VAL:")
+                    Log.w(TAG, "VAL:"+value)
                     photus.add(photos(key,value))
                 }
                 Myadapter.notifyDataSetChanged()
@@ -67,7 +68,10 @@ class three : Fragment() {
 
 
 
+
         return view
     }
+
+
 }
 

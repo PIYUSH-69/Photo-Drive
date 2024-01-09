@@ -37,23 +37,19 @@ class one : Fragment() {
 
             if (ContextCompat.checkSelfPermission(it.context,android.Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)
             {
-
-
+                val intent=Intent(Intent.ACTION_PICK)
+                intent.type="image/*"
+                image.launch(intent)
             }
             else{
                 ActivityCompat.requestPermissions(
                     requireActivity(),
                     arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    ,android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                        android.Manifest.permission.READ_MEDIA_IMAGES),101)
+                    ,android.Manifest.permission.READ_EXTERNAL_STORAGE
+                        , android.Manifest.permission.READ_MEDIA_IMAGES),100)
             }
-            val intent=Intent(Intent.ACTION_PICK)
-            intent.type="image/*"
-            image.launch(intent)
 
         }
-
-
 
         return view
 
@@ -84,6 +80,7 @@ class one : Fragment() {
 
                     }
                 }
+
 
 
             }

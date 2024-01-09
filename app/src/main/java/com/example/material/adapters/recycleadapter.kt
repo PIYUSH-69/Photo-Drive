@@ -1,8 +1,13 @@
 package com.example.material.adapters
 
 
-import android.app.Activity
+import android.content.ContentResolver
+import android.content.ContentValues
+import android.content.Context
+import android.os.Build
 import android.os.Environment
+import android.os.Environment.DIRECTORY_DCIM
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +15,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.recyclerview.widget.RecyclerView
 import com.example.material.R
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
@@ -39,14 +44,13 @@ class recycleadapter(val array: ArrayList<photos>): RecyclerView.Adapter<recycle
         return array.size
     }
 
-    override fun onBindViewHolder(holder: viewholder, position: Int) {
+      override fun onBindViewHolder(holder: viewholder, position: Int) {
         var photo=array.get(position)
         Picasso.get()
             .load(photo.photourl)
 //            .resize()
 //            .centerCrop()
             .into( holder.itemView.findViewById<ImageView>(R.id.image))
-
 
         val download=holder.itemView.findViewById<Button>(R.id.button)
         download.setOnClickListener {
@@ -57,12 +61,18 @@ class recycleadapter(val array: ArrayList<photos>): RecyclerView.Adapter<recycle
 
             var myRef = com.google.firebase.ktx.Firebase.storage.reference.child(uid).child("IMAGES")
             var filename=photo.path+"puch.jpg"
-            val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            val file = File(directory, filename)
-            Toast.makeText(it.context, photo.path, Toast.LENGTH_SHORT).show()
-            myRef.child(photo.path).getFile(file)
+
+
+            if (Build.VERSION.SDK_INT==Build.VERSION_CODES.Q)
+            {
+                Toast.makeText(it.context, "SAVED IN APP DATA", Toast.LENGTH_SHORT).show()
+                val dir= it.context.getExternalFilesDir(null)
+                val file = File(dir, filename)
+                Toast.makeText(it.context, photo.path, Toast.LENGTH_SHORT).show()
+
+                myRef.child(photo.path).getFile(file)
                     .addOnSuccessListener(OnSuccessListener<FileDownloadTask.TaskSnapshot?> {
-                        Log.e("firebase", " local tem file created  created ")
+                        Log.e("STORAGE_Q", "local tem file created  created ")
                     })
                     .addOnFailureListener(
                         OnFailureListener { exception ->
@@ -71,7 +81,73 @@ class recycleadapter(val array: ArrayList<photos>): RecyclerView.Adapter<recycle
                                 ";local tem file not created  created $exception"
                             )
                         })
+            }
+            else{
+
+                val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                val file = File(directory, filename)
+                Toast.makeText(it.context, photo.path, Toast.LENGTH_SHORT).show()
+
+                myRef.child(photo.path).getFile(file)
+                    .addOnSuccessListener(OnSuccessListener<FileDownloadTask.TaskSnapshot?> {
+                        Log.e("STORAGE", " local tem file created  created ")
+                    })
+                    .addOnFailureListener(
+                        OnFailureListener { exception ->
+                            Log.e(
+                                "firebase ",
+                                ";local tem file not created  created $exception"
+                            )
+                        })
+            }
         }
+
+
+          val delete=holder.itemView.findViewById<ImageView>(R.id.delete)
+          delete.setOnClickListener{
+
+
+              var uid= FirebaseAuth.getInstance().currentUser?.uid.toString()
+              val name=photo.path
+
+              //deleting from database
+              var realtime =Firebase.database("https://material-ba9f6-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("PHOTO").child(uid).child(name)
+              realtime.removeValue().addOnSuccessListener {
+
+                  //deleting from storage
+                  var myRef = com.google.firebase.ktx.Firebase.storage.reference.child(uid).child(name)
+                  myRef.delete().addOnSuccessListener {
+
+                      Log.e(
+                          "Delete ",
+                          "vachla FIREBASE"
+                      )
+
+
+                  }
+
+
+
+
+              }.addOnFailureListener {
+                 // Toast.makeText(it.context, "DELETED", Toast.LENGTH_SHORT).show()
+                  Log.e(
+                      "Delete ",
+                      "HAGLA FIREBASE"
+                  )
+
+
+              }
+
+
+
+
+
+
+
+
+
+          }
     }
 }
 
