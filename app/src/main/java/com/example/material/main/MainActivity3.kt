@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.example.material.R
@@ -83,15 +85,7 @@ class MainActivity3 : AppCompatActivity() {
 
 
 
-//            val logout=findViewById<Button>(R.id.button7)
-//            logout.setOnClickListener {
-//                sharedPreferences.edit().apply{
-//                    putBoolean("flag",false)
-//                }.apply()
-//                startActivity(Intent(this, MainActivity2::class.java))
-//
-//
-//            }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -99,5 +93,22 @@ class MainActivity3 : AppCompatActivity() {
         a.inflate(R.menu.menu,menu)
         return true
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val sharedPreferences= getSharedPreferences("counter", MODE_PRIVATE)
+        if (item.toString()=="Logout"){
+
+            sharedPreferences.edit().apply{
+                putBoolean("flag",false)
+            }.apply()
+            startActivity(Intent(this, MainActivity2::class.java))
+        }
+        else{
+            Log.w(ContentValues.TAG, "potty")
+        }
+
+    return true
     }
 }
