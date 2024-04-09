@@ -122,13 +122,7 @@ class recycleadapter(val array: ArrayList<photos>): RecyclerView.Adapter<recycle
                           "Delete ",
                           "vachla FIREBASE"
                       )
-
-
                   }
-
-
-
-
               }.addOnFailureListener {
                  // Toast.makeText(it.context, "DELETED", Toast.LENGTH_SHORT).show()
                   Log.e(

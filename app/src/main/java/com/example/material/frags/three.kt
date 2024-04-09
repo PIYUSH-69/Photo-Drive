@@ -37,11 +37,9 @@ class three : Fragment() {
         val database = Firebase.database("https://material-ba9f6-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val myRef = database.getReference("PHOTO").child(uid)
 
-
         val recylce=view.findViewById<RecyclerView>(R.id.recycle)
         val layoutManager= LinearLayoutManager(context)
         recylce.layoutManager=layoutManager
-
 
         Myadapter=recycleadapter(photus)
         recylce.adapter=Myadapter
@@ -49,7 +47,7 @@ class three : Fragment() {
         myRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+                // whenever data at this location is updated
                 photus.clear()
                 for (snapshot in snapshot.children) {
                     val key=snapshot.key.toString()
@@ -65,13 +63,7 @@ class three : Fragment() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-
-
-
-
         return view
     }
-
-
 }
 

@@ -8,10 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.example.material.R
 import com.example.material.adapters.tabsadapter
@@ -21,7 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-lateinit var  Myadapter: tabsadapter
+lateinit var Myadapter: tabsadapter
 
 class MainActivity3 : AppCompatActivity() {
 
@@ -78,12 +74,6 @@ class MainActivity3 : AppCompatActivity() {
             }
 
         })
-
-
-
-
-
-
 
 
     }
