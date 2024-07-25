@@ -18,9 +18,12 @@ Photo Drive App is an Android application developed in Kotlin that allows users 
 ## Screenshots
 
 <div align="center">
-<img src="Screenshots/img1.jpg" width="200" height="400" >
-<img src="Screenshots/gif.gif" width="200" height="400" >
-<img src="Screenshots/IMG2.jpg" width="200" height="400" >
+  <img src="Screenshots/gif.gif" width="200" height="400" >
+  <img src="Screenshots/img2.jpg" width="200" height="400" >
+  <img src="Screenshots/img1.jpg" width="200" height="400" >
+  <img src="Screenshots/img6.jpg" width="200" height="400" >
+  <img src="Screenshots/img5.jpg" width="200" height="400" >
+  <img src="Screenshots/img4.jpg" width="200" height="400" >
 </div>
 
 
