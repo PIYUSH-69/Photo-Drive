@@ -11,15 +11,18 @@ Photo Drive App is an Android application developed in Kotlin that allows users 
 
 ## Screenshots
 
+<div align="center">
+<img src="Screenshots/IMG1.jpg" width="200" height="400" alt="Grocery List App Logo">
+<img src="Screenshots/IMG2.jpg" width="200" height="400" alt="Grocery List App Logo">
+</div>
 
 
-## Installation
-Clone the repository:
-sh
-Copy code
-git clone https://github.com/yourusername/photo-drive-app.git
-Open the project in Android Studio.
-Add your Firebase configuration file:
-Download the google-services.json file from your Firebase project settings.
-Place the google-services.json file in the app directory of the project.
-Build and run the app on your Android device or emulator.
+## Contributing
+
+We welcome contributions to the Scanner App. If you'd like to contribute, please follow these guidelines:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and test thoroughly.
+4. Submit a pull request with a clear description of your changes.
+
