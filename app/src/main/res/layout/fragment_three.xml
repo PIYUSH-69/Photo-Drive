@@ -10,7 +10,7 @@
         android:id="@+id/recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C9F6F6"
+        android:background="#006A6A"
         tools:listitem="@layout/gallery" />
 
 </FrameLayout>

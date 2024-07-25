@@ -22,5 +22,10 @@
      <item name="tint">@color/neon</item>
     </style>
 
+    <style name="CustomTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+    </style>
+
+
+
 
 </resources>

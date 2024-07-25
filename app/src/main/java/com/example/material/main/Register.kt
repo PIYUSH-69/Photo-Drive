@@ -27,7 +27,7 @@ class Register : AppCompatActivity() {
         var bu = findViewById<Button>(R.id.button5)
         val spinner=findViewById<AutoCompleteTextView>(R.id.gender)
 
-        var genders= arrayListOf("MALE","FEMALE","TRANSFORMER")
+        var genders= arrayListOf("MALE","FEMALE","TRANSGENDER")
         val adapter=ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,genders)
         spinner.setAdapter(adapter)
 

@@ -48,8 +48,8 @@ class recycleadapter(val array: ArrayList<photos>): RecyclerView.Adapter<recycle
         var photo=array.get(position)
         Picasso.get()
             .load(photo.photourl)
-//            .resize()
-//            .centerCrop()
+            .resize(500, 900)
+           .centerCrop()
             .into( holder.itemView.findViewById<ImageView>(R.id.image))
 
         val download=holder.itemView.findViewById<Button>(R.id.button)
@@ -59,8 +59,8 @@ class recycleadapter(val array: ArrayList<photos>): RecyclerView.Adapter<recycle
 //            val database = Firebase.database("https://material-ba9f6-default-rtdb.asia-southeast1.firebasedatabase.app/")
 //            val myRef = database.getReference("PHOTO").child(uid).child(photo.path)
 
-            var myRef = com.google.firebase.ktx.Firebase.storage.reference.child(uid).child("IMAGES")
-            var filename=photo.path+"puch.jpg"
+            val myRef = com.google.firebase.ktx.Firebase.storage.reference.child(uid).child("IMAGES")
+            val filename=photo.path+"puch.jpg"
 
 
             if (Build.VERSION.SDK_INT==Build.VERSION_CODES.Q)
